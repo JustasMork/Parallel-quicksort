@@ -44,9 +44,9 @@ public class Test
             sequentialExecutionTime = System.currentTimeMillis() - t0;
 
             //Parallel test
-            t0 = System.currentTimeMillis();
-            runParallelTest(arrayFactory);
-            long parallelExecutionTime = System.currentTimeMillis() - t0;
+//            t0 = System.currentTimeMillis();
+//            runParallelTest(arrayFactory);
+//            long parallelExecutionTime = System.currentTimeMillis() - t0;
 
             writeTestResultsToConsole(sequentialExecutionTime, 0);
             writeTestResultsToFile(sequentialExecutionTime, 0);
