@@ -35,24 +35,38 @@ public class Test
 
     public void runTest() throws IOException
     {
-        while (sequentialExecutionTime < Config.MAX_EXECUTION_TIME) {
-            arrayFactory = new ArrayFactory(currentArraySize);
+        try{
+            while (sequentialExecutionTime < Config.MAX_EXECUTION_TIME) {
+                arrayFactory = new ArrayFactory(currentArraySize);
 
-            //Sequential test
-            long t0 = System.currentTimeMillis();
-            runSequentialTest(arrayFactory);
-            sequentialExecutionTime = System.currentTimeMillis() - t0;
+                //Sequential test
+                long t0 = System.currentTimeMillis();
+                runSequentialTest(arrayFactory);
+                sequentialExecutionTime = System.currentTimeMillis() - t0;
 
-            //Parallel test
-//            t0 = System.currentTimeMillis();
-//            runParallelTest(arrayFactory);
-//            long parallelExecutionTime = System.currentTimeMillis() - t0;
+                //Parallel test
+                t0 = System.currentTimeMillis();
+                runParallelTest(arrayFactory);
+                long parallelExecutionTime = System.currentTimeMillis() - t0;
 
-            writeTestResultsToConsole(sequentialExecutionTime, 0);
-            writeTestResultsToFile(sequentialExecutionTime, 0);
-            currentArraySize += Config.ARRAY_INTERVAL;
+                writeTestResultsToConsole(sequentialExecutionTime, parallelExecutionTime);
+                writeTestResultsToFile(sequentialExecutionTime, parallelExecutionTime);
+                currentArraySize += Config.ARRAY_INTERVAL;
+            }
+            writer.close();
+        
+        }catch(OutOfMemoryError | StackOverflowError ex){
+            this.handleTestExceptions(ex); 
         }
+    }
+    
+    protected void handleTestExceptions(Throwable ex)
+    {
+        writer.write(ex.getMessage());   
         writer.close();
+        
+        if(Config.WRITE_RESULTS_TO_CONSOLE)
+            System.out.println(ex.getMessage());
     }
 
     protected void runSequentialTest(ArrayFactory arrayFactory)

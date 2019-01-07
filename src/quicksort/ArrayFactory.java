@@ -17,6 +17,7 @@ public class ArrayFactory
         this.array = new int[arraySize];
         this.random = new Random();
         fillArray();     
+        //fillArrayWithAscending();
     }
     
     private void fillArray()
@@ -24,6 +25,21 @@ public class ArrayFactory
         for(int i = 0; i < array.length; i++)
         {
             this.array[i] = random.nextInt(Config.MAX_RANDOM_INTEGER_IN_FACTORY);
+        }
+    }
+    
+    private void fillArrayWithAscending()
+    {
+        for(int i = 0; i < array.length; i++)
+        {
+            this.array[i] = i;
+        }
+    }
+    
+    private void fillArrayWithDescending()
+    {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = array.length - i;   
         }
     }
     

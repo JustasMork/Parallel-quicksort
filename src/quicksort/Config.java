@@ -13,7 +13,7 @@ public class Config
      */
     public static int MAX_PRINTABLE_ARRAY_SIZE = 100;
     
-    public static int MAX_RANDOM_INTEGER_IN_FACTORY = 100;
+    public static int MAX_RANDOM_INTEGER_IN_FACTORY = 999999999;
     
     public static boolean DEBUG = true;
     
@@ -23,9 +23,9 @@ public class Config
     
     public static int INITIAL_ARRAY_SIZE = 10000;
     
-    public static int ARRAY_INTERVAL = 100000;
+    public static int ARRAY_INTERVAL = 1000000;
     
-    public static long MAX_EXECUTION_TIME = 1000*60*10;
+    public static long MAX_EXECUTION_TIME = 1000*60*1;
     
     public static String RESULTS_FILE_NAME = "test_results.csv";
     
