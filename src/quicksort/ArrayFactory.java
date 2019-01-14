@@ -9,42 +9,28 @@ import java.util.Random;
  */
 public class ArrayFactory
 {
-    protected int[] array;
+    protected int arraySize;
     protected Random random;
+    
+    public ArrayFactory(int arraySize, long seed)
+    {
+        this.arraySize = arraySize;
+        this.random = new Random(seed);
+    }
     
     public ArrayFactory(int arraySize)
     {
-        this.array = new int[arraySize];
+        this.arraySize = arraySize;
         this.random = new Random();
-        fillArray();     
-        //fillArrayWithAscending();
-    }
-    
-    private void fillArray()
-    {
-        for(int i = 0; i < array.length; i++)
-        {
-            this.array[i] = random.nextInt(Config.MAX_RANDOM_INTEGER_IN_FACTORY);
-        }
-    }
-    
-    private void fillArrayWithAscending()
-    {
-        for(int i = 0; i < array.length; i++)
-        {
-            this.array[i] = i;
-        }
-    }
-    
-    private void fillArrayWithDescending()
-    {
-        for (int i = 0; i < array.length; i++) {
-            array[i] = array.length - i;   
-        }
     }
     
     public int[] getArray()
     {
-        return array.clone();
+       int[] array = new int[this.arraySize];
+       for(int i = 0; i < array.length; i++)
+        {
+            array[i] = random.nextInt(Config.MAX_RANDOM_INTEGER_IN_FACTORY);
+        }
+       return array;
     }  
 }

@@ -37,7 +37,7 @@ public class Test
     {
         try{
             while (sequentialExecutionTime < Config.MAX_EXECUTION_TIME) {
-                arrayFactory = new ArrayFactory(currentArraySize);
+                arrayFactory = new ArrayFactory(currentArraySize, Config.RANDOM_SEED);
 
                 //Sequential test
                 long t0 = System.currentTimeMillis();
