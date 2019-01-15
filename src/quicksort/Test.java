@@ -44,6 +44,7 @@ public class Test
                 runSequentialTest(arrayFactory);
                 sequentialExecutionTime = System.currentTimeMillis() - t0;
 
+                arrayFactory = new ArrayFactory(currentArraySize, Config.RANDOM_SEED);
                 //Parallel test
                 t0 = System.currentTimeMillis();
                 runParallelTest(arrayFactory);
