@@ -18,7 +18,7 @@ public class Quicksort
     {
       try{
           UserPrompt.programRunningTypePrompt();
-      }catch(Throwable ex){
+      }catch(IOException ex){
           errorHandler(ex); 
       }
     }
@@ -41,7 +41,12 @@ public class Quicksort
     
     public static void runTest() throws IOException
     {
-       (new Test()).runTest();
+        Test test = new Test();
+        try{
+            test.runTest();
+        } catch (IOException ex) {
+            test.closeWriter();
+        }
     }
 
     public static void errorHandler(Throwable ex)

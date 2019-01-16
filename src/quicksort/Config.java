@@ -21,11 +21,11 @@ public class Config
      * Testing constants
      */
     
-    public static int INITIAL_ARRAY_SIZE = 536010000;
+    public static int INITIAL_ARRAY_SIZE = 1000000;
     
     public static int ARRAY_INTERVAL = 1000000;
     
-    public static long MAX_EXECUTION_TIME = 1000*60*10;
+    public static long MAX_EXECUTION_TIME = 1000*60*3;
     
     public static String RESULTS_FILE_NAME = "test_results.csv";
     

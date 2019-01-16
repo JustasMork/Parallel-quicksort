@@ -61,6 +61,11 @@ public class Test
         }
     }
     
+    public void closeWriter()
+    {
+        writer.close();
+    }
+    
     protected void handleTestExceptions(Throwable ex)
     {
         writer.write(ex.getMessage());   
