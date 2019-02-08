@@ -83,8 +83,8 @@ public class Test
 
     protected void runParallelTest(ArrayFactory arrayFactory)
     {
-        QuicksortAlgorithm quicksortAlgorithm = new QuicksortParallel(arrayFactory.getArray());
-        quicksortAlgorithm.sort();
+            QuicksortAlgorithm quicksortAlgorithm = new QuicksortParallel(arrayFactory.getArray());
+            quicksortAlgorithm.sort();
     }
 
     protected void writeTestResultsToConsole(long timeSequential, long timeParallel)

@@ -2,6 +2,10 @@
  */
 package quicksort.algorithm;
 
+import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Justas
@@ -12,6 +16,7 @@ public class QuicksortParallel extends QuicksortAlgorithm
     protected int numberOfCores;
     protected Thread[] threads;
     protected int threadCounter;
+    protected Semaphore sem;
 
     public QuicksortParallel(int[] array)
     {
@@ -19,6 +24,7 @@ public class QuicksortParallel extends QuicksortAlgorithm
         numberOfCores = Runtime.getRuntime().availableProcessors();
         threads = new Thread[numberOfCores];
         threadCounter = 0;
+        sem = new Semaphore(0);
     }
 
     @Override
@@ -26,16 +32,20 @@ public class QuicksortParallel extends QuicksortAlgorithm
     {
         
         (new runSortAlgorythmClass(0, array.length-1, 0)).run();
-        while (threadCounter < numberOfCores) {}
-        
-        for(int i = 0; i < threads.length; i++)
-        {
-            try {
-                threads[i].join();
-            } catch (InterruptedException ex) {
-               ex.printStackTrace();
+        try {           
+            sem.acquire();
+            for(int i = 0; i < threads.length; i++)
+            {
+                try {
+                    threads[i].join();
+                } catch (InterruptedException ex) {
+                   ex.printStackTrace();
+                }
             }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(QuicksortParallel.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
           
         return array;
     }
@@ -74,7 +84,9 @@ public class QuicksortParallel extends QuicksortAlgorithm
                     threads[threadCounter++].start();
 
                     threads[threadCounter] = new Thread((new runSortAlgorythmClass(mid+1, end, recCounter)));
-                    threads[threadCounter++].start();               
+                    threads[threadCounter++].start();  
+                    if(threadCounter >= numberOfCores)
+                        sem.release();
                 }
             }
         }
