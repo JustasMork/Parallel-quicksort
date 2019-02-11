@@ -16,7 +16,7 @@ public abstract class QuicksortAlgorithm
         this.array = array;
     }
     
-    public int partition(int start, int end)
+    protected int partition(int start, int end)
     {
         int pivot = array[end];
         int pointer = start - 1;

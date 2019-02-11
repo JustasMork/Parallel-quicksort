@@ -68,11 +68,12 @@ public class Test
     
     protected void handleTestExceptions(Throwable ex)
     {
-        writer.write(ex.getMessage());   
+        //writer.write(ex.getMessage());   
         writer.close();
         
         if(Config.WRITE_RESULTS_TO_CONSOLE)
             System.out.println(ex.getMessage());
+        ex.printStackTrace();
     }
 
     protected void runSequentialTest(ArrayFactory arrayFactory)
